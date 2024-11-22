@@ -1,0 +1,7 @@
+name: User Deleter
+type: module
+description: Deletes users based on usernames from a provided CSV file.
+package: Custom
+core_version_requirement: ^9 || ^10
+dependencies:
+  - user\

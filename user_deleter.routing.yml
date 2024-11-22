@@ -1,0 +1,7 @@
+user_deleter.settings_form:
+  path: '/admin/config/system/user-deleter'
+  defaults:
+    _title: 'User Deleter settings'
+    _form: 'Drupal\user_deleter\Form\SettingsForm'
+  requirements:
+    _permission: 'administer user_deleter configuration'

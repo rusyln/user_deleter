@@ -1,0 +1,6 @@
+user_deleter.settings_form:
+  title: 'User Deleter'
+  description: 'Configure User Deleter.'
+  parent: system.admin_config_system
+  route_name: user_deleter.settings_form
+  weight: 10
