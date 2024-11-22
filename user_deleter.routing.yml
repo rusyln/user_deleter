@@ -5,3 +5,11 @@ user_deleter.settings_form:
     _form: 'Drupal\user_deleter\Form\SettingsForm'
   requirements:
     _permission: 'administer user_deleter configuration'
+    
+user_deleter.delete_users:
+  path: '/admin/config/system/user-deleter/delete-users'
+  defaults:
+    _title: 'Delete Users'
+    _form: 'Drupal\user_deleter\Form\UserDeleteForm'
+  requirements:
+    _permission: 'administer user_deleter configuration'
