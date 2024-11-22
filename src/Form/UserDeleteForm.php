@@ -32,7 +32,7 @@ class UserDeleteForm extends FormBase {
     $form['actions']['upload'] = [
       '#type' => 'submit',
       '#value' => $this->t('Upload & Validate'),
-      '#submit' => ['::validateCsvFile'],
+      '#validate' => ['::validateCsvFile'],
     ];
   
     // If the form state contains validated usernames, show the "Delete Users" button
@@ -79,7 +79,7 @@ class UserDeleteForm extends FormBase {
         $usernames = [];
         if (($handle = fopen($destination, 'r')) !== FALSE) {
           while (($data = fgetcsv($handle, 1000, ',')) !== FALSE) {
-            $username = trim($data[0]);
+            $username = isset($data[0]) && $data[0] !== null ? trim($data[0]) : '';
             if (!empty($username)) {
               $usernames[] = $username;
             }
@@ -89,7 +89,7 @@ class UserDeleteForm extends FormBase {
   
         if (!empty($usernames)) {
           // Save validated usernames to the form state
-          $form_state->set('validated_usernames', $usernames); 
+          $form_state->set('validated_usernames', $usernames);
           $this->messenger()->addMessage($this->t('CSV file validated successfully. Found %count usernames.', ['%count' => count($usernames)]));
         } else {
           $this->messenger()->addWarning($this->t('No valid usernames found in the CSV file.'));
@@ -104,6 +104,7 @@ class UserDeleteForm extends FormBase {
     // Rebuild the form to show the Delete button
     $form_state->setRebuild(TRUE);
   }
+  
   
   public function deleteUsers(array &$form, FormStateInterface $form_state) {
     // Get validated usernames from form state
