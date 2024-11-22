@@ -115,7 +115,7 @@ class UserDeleteForm extends FormBase {
       return;
     }
   
-    // Proceed with deleting users
+    // Proceed with deleting user
     $deleted_users = 0;
     $not_found_users = [];
   
